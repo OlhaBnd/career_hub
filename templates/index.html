@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="get" class="filter">
+    <input name="search" placeholder="Search career">
+    <select name="level">
+        <option value="">Any level</option>
+        <option>Junior</option>
+        <option>Middle</option>
+        <option>Senior</option>
+    </select>
+    <button>Search</button>
+</form>
+
+{% for career in careers %}
+<div class="card">
+    <h2>{{ career.title }}</h2>
+    <p>{{ career.description }}</p>
+    <p><b>Level:</b> {{ career.level }}</p>
+    <a href="/career/{{ career.id }}">View details</a>
+</div>
+{% else %}
+<p>No careers found.</p>
+{% endfor %}
+{% endblock %}

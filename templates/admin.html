@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add career</h2>
+
+<form method="post" class="card">
+    <input name="title" placeholder="Title" required>
+    <textarea name="description" placeholder="Description"></textarea>
+    <input name="skills" placeholder="Skills">
+    <input name="level" placeholder="Junior / Middle / Senior">
+    <input name="salary" placeholder="Salary range">
+    <button>Add</button>
+</form>
+{% endblock %}
