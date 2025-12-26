@@ -1,15 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
-# Створюємо Flask-застосунок
-# Flask "слухає" браузер і відправляє сторінки
 app = Flask(__name__)
 
-# ---------- DATABASE ----------
-# Функція для підключення до бази SQLite
+
 def get_db():
-    # sqlite3.connect підключається до файлу database.db
-    # row_factory дозволяє звертатися до стовпців за іменем
+
     conn = sqlite3.connect("database.db")
     conn.row_factory = sqlite3.Row
     return conn
@@ -44,7 +40,6 @@ def init_db():
     conn.close()
 
 
-# ---------- ROUTES ----------
 
 # Головна сторінка
 @app.route("/")
@@ -116,7 +111,6 @@ def admin():
     return render_template("admin.html")
 
 
-# ---------- START ----------
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
