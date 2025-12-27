@@ -8,17 +8,153 @@ h1, h2 {
     color: #2c3e50;
 }
 
+a {
+  color: #4f46e5;           
+  text-decoration: none;     
+  font-weight: 500;          
+  transition: color 0.3s;    
+  cursor: pointer;
+}
+
+a:hover {
+  color: #6366f1;            
+  text-decoration: underline;  
+}
+
+a:active {
+  color: #3730a3;          
+}
+
+a:visited {
+  color: #4f46e5;        
+}
+
 .card {
     background: white;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+    body { padding: 10px; }
+    input, select, textarea { width: 100%; box-sizing: border-box; }
+}
+
+nav {
+    margin-bottom: 30px;
 }
 
 button {
-    padding: 8px 12px;
-    background: #3498db;
-    color: white;
+    height: 40px;
+    padding: 8px 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #4f46e5;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #6366f1;
+}
+
+.input-text {
+    height: 22px;
+    padding: 10px 12px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    flex: 1;
+}
+
+.input-text:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.2);
+}
+
+.select {
+    height: 42px;
+    padding: 10px 12px;
+    padding-right: 32px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.select:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.2);
+}
+
+.select-wrapper {
+    position: relative;
+    
+}
+
+.select-wrapper::after {
+    content: "▾";
+    position: absolute;
+    right: 12px;
+    top:50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #555;
+    
+}
+
+
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.skill-tag {
+    background: #e1ecf4;
+    color: #39739d;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 0.9em;
+    display: inline-block;
+}
+
+.flash {
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.flash.success {
+  background-color: #4ade80; 
+  color: #065f46;
+}
+
+.flash.error {
+  background-color: #f87171;
+  color: #7f1d1d;
 }

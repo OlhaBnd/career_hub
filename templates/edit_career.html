@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}
+<div class="card">
+  <h2>Редагувати вакансію</h2>
+  <form method="post">
+    <input name="title" value="{{ career.title }}" required />
+    <textarea name="description">{{ career.description }}</textarea>
+    <input name="skills" value="{{ career.skills }}" />
+    <input name="level" value="{{ career.level }}" />
+    <input name="salary" value="{{ career.salary }}" />
+    <button type="submit">Зберегти зміни</button>
+  </form>
+  <a href="/">Скасувати</a>
+</div>
+{% endblock %}

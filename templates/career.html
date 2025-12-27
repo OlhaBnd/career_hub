@@ -1,24 +1,42 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="card">
-    <h2>{{ career.title }}</h2>
-    <p>{{ career.description }}</p>
-    <p><b>Skills:</b> {{ career.skills }}</p>
-    <p><b>Level:</b> {{ career.level }}</p>
-    <p><b>Salary:</b> {{ career.salary }}</p>
+  <a href="/">← Назад до списку</a>
+  <h2>{{ career.title }}</h2>
+  <p>{{ career.description }}</p>
+  <p>
+    <b>Skills:</b>
+    {% for skill in career.skills.split(';') %}
+    <span class="skill-tag">{{ skill }}</span>
+    {% endfor %}
+  </p>
+  <p><b>Level:</b> {{ career.level }}</p>
+  <p><b>Salary:</b> {{ career.salary }}</p>
 </div>
 
 <h3>Comments</h3>
 
 {% for comment in comments %}
-<div class="comment">{{ comment.text }}</div>
-{% else %}
-<p>No comments yet.</p>
+<div class="comment">
+  <strong>{{ comment.author }}:</strong> {{ comment.text }} {% if
+  session.get('user') %}
+  <a
+    href="{{ url_for('delete_comment', id=comment.id) }}"
+    style="color: red; font-size: 0.8em; margin-left: 10px"
+    onclick="return confirm('Ви впевнені?')"
+    >видалити</a
+  >
+  {% endif %}
+</div>
 {% endfor %}
 
 <form method="post">
-    <textarea name="text" placeholder="Add comment"></textarea>
-    <button>Add comment</button>
+  <input name="author" placeholder="Ваше ім'я" required class="form-control" />
+  <textarea
+    name="text"
+    placeholder="Коментар"
+    required
+    class="form-control"
+  ></textarea>
+  <button>Надіслати</button>
 </form>
 {% endblock %}

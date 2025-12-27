@@ -1,25 +1,30 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <form method="get" class="filter">
-    <input name="search" placeholder="Search career">
-    <select name="level">
-        <option value="">Any level</option>
-        <option>Junior</option>
-        <option>Middle</option>
-        <option>Senior</option>
+  <input name="search" placeholder="Search career" class="input-text"/>
+  <div class="select-wrapper">
+    <select name="level" class="select">
+      <option value="">Any level</option>
+      <option>Junior</option>
+      <option>Middle</option>
+      <option>Senior</option>
     </select>
-    <button>Search</button>
+  </div>
+  <button>Search</button>
 </form>
 
 {% for career in careers %}
 <div class="card">
-    <h2>{{ career.title }}</h2>
-    <p>{{ career.description }}</p>
-    <p><b>Level:</b> {{ career.level }}</p>
-    <a href="/career/{{ career.id }}">View details</a>
+  <h2>{{ career.title }}</h2>
+  <small>Опубліковано: {{ career.created_at }}</small></small>
+  <p>{{ career.description }}</p>
+  <p><b>Level:</b> {{ career.level }}</p>
+  <a href="/career/{{ career.id }}">View details</a>
+  {% if session.get('user') %}
+    <a href="{{ url_for('edit_career', id=career.id) }}" style="color: blue;">[Редагувати]</a>
+    <a href="{{ url_for('delete_career', id=career.id) }}" style="color: red;">[Видалити]</a>
+{% endif %}
 </div>
+
 {% else %}
 <p>No careers found.</p>
-{% endfor %}
-{% endblock %}
+{% endfor %} {% endblock %}
